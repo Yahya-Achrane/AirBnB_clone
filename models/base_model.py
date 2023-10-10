@@ -31,10 +31,17 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = self.created_at
             models.storage.new(self)
-        
-        def __str__(self):
+
+    def __str__(self):
         '''
         documentation goes here
         '''
         class_name = type(self).__name__
         return "[{}] ({}) {}".format(class_name, self.id, self.__dict__)
+
+    def save(self):
+        """
+        save documentation
+        """
+        self.updated_at = datetime.now()
+        models.storage.save()
