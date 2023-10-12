@@ -10,11 +10,26 @@ import models
 
 class BaseModel:
     """
+    Base class for all models.
 
+    Attributes:
+        id (str): Unique identifier for the instance.
+        created_at (datetime): Date and time of instance creation.
+        updated_at (datetime): Date and time of instance last update.
+
+    Methods:
+        __init__: Initializes a new instance of BaseModel.
+        __str__: Returns a string representation of the instance.
+        save: Updates the instance's `updated_at` attribute and saves the changes.
+        to_dict: Returns a dictionary representation of the instance.
     """
     def __init__(self, *args, **kwargs):
         '''
-        Docs
+        Initializes a new instance of BaseModel.
+
+        Args:
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.
         '''
         if kwargs:
             for key, value in kwargs.items():
@@ -34,21 +49,27 @@ class BaseModel:
 
     def __str__(self):
         '''
-        documentation goes here
+        Returns a string representation of the instance.
+
+        Returns:
+            str: A formatted string containing class name, id, and attributes.
         '''
         class_name = type(self).__name__
         return "[{}] ({}) {}".format(class_name, self.id, self.__dict__)
 
     def save(self):
         """
-        save documentation
+        Updates the instance's `updated_at` attribute and saves the changes.
         """
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
         '''
-        dict docs
+        Returns a dictionary representation of the instance.
+
+        Returns:
+            dict: A dictionary containing class attributes and their values.
         '''
         dictionary = self.__dict__.copy()
         dictionary["__class__"] = type(self).__name__
