@@ -9,20 +9,36 @@ from models.base_model import BaseModel
 
 class FileStorage:
     '''
-    Class Docs
+    The FileStorage class handles serialization and deserialization of instances to and from JSON files.
+
+    Attributes:
+        __file_path (str): The file path to the JSON file.
+        __objects (dict): A dictionary containing instances in the format {class_name.id: instance}.
+
+    Methods:
+        all: Returns the dictionary of all objects.
+        new: Adds a new object to the dictionary.
+        save: Serializes objects to JSON and saves to file.
+        reload: Deserializes JSON file and loads objects into dictionary.
     '''
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
         '''
-        Docs
+        Returns a dictionary of all objects.
+        
+        Returns:
+            dict: A dictionary containing all objects.
         '''
         return FileStorage.__objects
 
     def new(self, obj):
         '''
-        Docs
+        Adds a new object to the dictionary.
+
+        Args:
+            obj: The object to be added.
         '''
         key = f"{obj.__class__.__name__}.{obj.id}"
 
@@ -30,7 +46,7 @@ class FileStorage:
 
     def save(self):
         '''
-        Docs
+        Serializes objects to JSON and saves to file.
         '''
         final_dict = {
                 key: value.to_dict() for key, value
@@ -42,7 +58,7 @@ class FileStorage:
 
     def reload(self):
         '''
-        Docs
+        Deserializes JSON file and loads objects into dictionary.
         '''
         filename = FileStorage.__file_path
         if isfile(filename):
