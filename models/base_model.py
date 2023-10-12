@@ -45,3 +45,14 @@ class BaseModel:
         """
         self.updated_at = datetime.now()
         models.storage.save()
+
+    def to_dict(self):
+        '''
+        dict docs
+        '''
+        dictionary = self.__dict__.copy()
+        dictionary["__class__"] = type(self).__name__
+        dictionary["created_at"] = self.created_at.isoformat()
+        dictionary["updated_at"] = self.updated_at.isoformat()
+
+        return dictionary
