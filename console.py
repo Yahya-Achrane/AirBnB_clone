@@ -29,6 +29,22 @@ class HBNBCommand(cmd.Cmd):
         """
         pass
 
+    def do_create(self, arg):
+        """
+        Docs
+        """
+        if len(arg) > 0:
+            args_array = arg.split()
+            if len(args_array) > 0:
+                if args_array[0] == "BaseModel":
+                    obj = BaseModel()
+                    obj.save()
+
+                    print(obj.id)
+                else:
+                    print("** class doesn't exist **")
+        else:
+            print("** class name missing **")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
