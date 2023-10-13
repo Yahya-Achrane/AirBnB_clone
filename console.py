@@ -91,5 +91,26 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
 
+    def do_all(self, arg):
+        """
+        Docs
+        """
+        if len(arg) > 0:
+            args_array = arg.split()
+            if len(args_array) > 0:
+                if args_array[0] == "BaseModel":
+                    final_list = []
+                    for key, value in models.storage.all().items():
+                        if ("BaseModel" in key):
+                            final_list.append(str(value))
+                    print(final_list)
+                else:
+                    print("** class doesn't exist **")
+        else:
+            final_list = []
+            for key, value in models.storage.all().items():
+                final_list.append(str(value))
+            print(final_list)
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
