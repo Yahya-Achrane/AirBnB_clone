@@ -180,5 +180,18 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
 
+     def do_User(self, arg):
+        """
+        Docs
+        """
+        allowed_methods = [".all()"]
+        if len(arg) > 0:
+            args_array = arg.split()
+            if len(args_array) > 0:
+                command_method = args_array[0]
+                if command_method in allowed_methods:
+                    if command_method == ".all()":
+                        self.do_all("User")
+                        
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
