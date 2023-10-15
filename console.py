@@ -110,7 +110,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, arg):
         """
-        Destroy docs goes here
+        Usage: destroy <class> <id> or <class>.destroy(<id>)
+        Delete a class instance of a given id.
         """
         allowed_classes = ["BaseModel", "User", "State",
                            "City", "Amenity", "Place", "Review"]
