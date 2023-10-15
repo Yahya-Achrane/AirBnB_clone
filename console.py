@@ -5,6 +5,12 @@ Defines the HBNB console.
 import cmd
 from models.base_model import BaseModel
 import models
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -41,7 +47,30 @@ class HBNBCommand(cmd.Cmd):
                 if args_array[0] == "BaseModel":
                     obj = BaseModel()
                     obj.save()
-
+                    print(obj.id)
+                elif args_array[0] == "User":
+                    obj = User()
+                    obj.save()
+                    print(obj.id)
+                elif args_array[0] == "State":
+                    obj = State()
+                    obj.save()
+                    print(obj.id)
+                elif args_array[0] == "City":
+                    obj = City()
+                    obj.save()
+                    print(obj.id)
+                elif args_array[0] == "Amenity":
+                    obj = Amenity()
+                    obj.save()
+                    print(obj.id)
+                elif args_array[0] == "Place":
+                    obj = Place()
+                    obj.save()
+                    print(obj.id)
+                elif args_array[0] == "Review":
+                    obj = Review()
+                    obj.save()
                     print(obj.id)
                 else:
                     print("** class doesn't exist **")
@@ -52,13 +81,17 @@ class HBNBCommand(cmd.Cmd):
         """
         show docs goes here
         """
+        allowed_classes = ["BaseModel", "User", "State",
+                           "City", "Amenity", "Place", "Review"]
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
-                if args_array[0] == "BaseModel":
+                class_name = args_array[0]
+                if class_name in allowed_classes:
                     if len(args_array) > 1:
                         objs_dict = models.storage.all()
-                        search_string = "BaseModel.{}".format(args_array[1])
+                        search_string = "{}.{}".format(class_name,
+                                                       args_array[1])
                         if search_string in objs_dict:
                             print(objs_dict[search_string])
                         else:
@@ -74,13 +107,17 @@ class HBNBCommand(cmd.Cmd):
         """
         Destroy docs goes here
         """
+        allowed_classes = ["BaseModel", "User", "State",
+                           "City", "Amenity", "Place", "Review"]
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
-                if args_array[0] == "BaseModel":
+                class_name = args_array[0]
+                if class_name in allowed_classes:
                     if len(args_array) > 1:
                         objs_dict = models.storage.all()
-                        search_string = "BaseModel.{}".format(args_array[1])
+                        search_string = "{}.{}".format(class_name,
+                                                       args_array[1])
                         if search_string in objs_dict:
                             del(objs_dict[search_string])
                             models.storage.save()
@@ -97,13 +134,16 @@ class HBNBCommand(cmd.Cmd):
         """
         empty for now
         """
+        allowed_classes = ["BaseModel", "User", "State",
+                           "City", "Amenity", "Place", "Review"]
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
-                if args_array[0] == "BaseModel":
+                class_name = args_array[0]
+                if class_name in allowed_classes:
                     final_list = []
                     for key, value in models.storage.all().items():
-                        if ("BaseModel" in key):
+                        if (class_name in key):
                             final_list.append(str(value))
                     print(final_list)
                 else:
@@ -118,18 +158,27 @@ class HBNBCommand(cmd.Cmd):
         """
         update docs ..
         """
+        allowed_classes = ["BaseModel", "User", "State",
+                           "City", "Amenity", "Place", "Review"]
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
-                if args_array[0] == "BaseModel":
+                class_name = args_array[0]
+                if class_name in allowed_classes:
                     if len(args_array) > 1:
                         objs_dict = models.storage.all()
-                        search_string = "BaseModel.{}".format(args_array[1])
+                        search_string = "{}.{}".format(class_name,
+                                                       args_array[1])
                         if search_string in objs_dict:
                             if len(args_array) > 2:
                                 if len(args_array) > 3:
-                                    if (args_array[3] not in ["created_at", "updated_at", "id"]):
-                                        setattr(objs_dict[search_string], str(args_array[2]), str(args_array[3]))
+                                    if (args_array[3]not in [
+                                        "created_at",
+                                            "updated_at", "id"]):
+                                        setattr(objs_dict
+                                                [search_string],
+                                                str(args_array[2]),
+                                                str(args_array[3]))
                                 else:
                                     print("** value missing **")
                             else:
@@ -142,6 +191,98 @@ class HBNBCommand(cmd.Cmd):
                     print("** class doesn't exist **")
         else:
             print("** class name missing **")
+
+    def do_User(self, arg):
+        """
+        Docs
+        """
+        allowed_methods = [".all()"]
+        if len(arg) > 0:
+            args_array = arg.split()
+            if len(args_array) > 0:
+                command_method = args_array[0]
+                if command_method in allowed_methods:
+                    if command_method == ".all()":
+                        self.do_all("User")
+
+    def do_BaseModel(self, arg):
+        """
+        Docs
+        """
+        allowed_methods = [".all()"]
+        if len(arg) > 0:
+            args_array = arg.split()
+            if len(args_array) > 0:
+                command_method = args_array[0]
+                if command_method in allowed_methods:
+                    if command_method == ".all()":
+                        self.do_all("BaseModel")
+
+    def do_State(self, arg):
+        """
+        Docs
+        """
+        allowed_methods = [".all()"]
+        if len(arg) > 0:
+            args_array = arg.split()
+            if len(args_array) > 0:
+                command_method = args_array[0]
+                if command_method in allowed_methods:
+                    if command_method == ".all()":
+                        self.do_all("State")
+
+    def do_City(self, arg):
+        """
+        Docs
+        """
+        allowed_methods = [".all()"]
+        if len(arg) > 0:
+            args_array = arg.split()
+            if len(args_array) > 0:
+                command_method = args_array[0]
+                if command_method in allowed_methods:
+                    if command_method == ".all()":
+                        self.do_all("City")
+
+    def do_Amenity(self, arg):
+        """
+        Docs
+        """
+        allowed_methods = [".all()"]
+        if len(arg) > 0:
+            args_array = arg.split()
+            if len(args_array) > 0:
+                command_method = args_array[0]
+                if command_method in allowed_methods:
+                    if command_method == ".all()":
+                        self.do_all("Amenity")
+
+    def do_Place(self, arg):
+        """
+        Docs
+        """
+        allowed_methods = [".all()"]
+        if len(arg) > 0:
+            args_array = arg.split()
+            if len(args_array) > 0:
+                command_method = args_array[0]
+                if command_method in allowed_methods:
+                    if command_method == ".all()":
+                        self.do_all("Place")
+
+    def do_Review(self, arg):
+        """
+        Docs
+        """
+        allowed_methods = [".all()"]
+        if len(arg) > 0:
+            args_array = arg.split()
+            if len(args_array) > 0:
+                command_method = args_array[0]
+                if command_method in allowed_methods:
+                    if command_method == ".all()":
+                        self.do_all("Review")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

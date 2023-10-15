@@ -5,15 +5,23 @@ Module Docs
 from json import dumps, loads
 from os.path import isfile
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage:
     '''
-    The FileStorage class handles serialization and deserialization of instances to and from JSON files.
+    The FileStorage class handles serialization and deserialization of
+    instances to and from JSON files.
 
     Attributes:
         __file_path (str): The file path to the JSON file.
-        __objects (dict): A dictionary containing instances in the format {class_name.id: instance}.
+        __objects (dict): A dictionary containing instances in
+        the format {class_name.id: instance}.
 
     Methods:
         all: Returns the dictionary of all objects.
@@ -27,7 +35,7 @@ class FileStorage:
     def all(self):
         '''
         Returns a dictionary of all objects.
-        
+
         Returns:
             dict: A dictionary containing all objects.
         '''
@@ -60,6 +68,8 @@ class FileStorage:
         '''
         Deserializes JSON file and loads objects into dictionary.
         '''
+        allowed_classes = ["BaseModel", "User", "State", "City",
+                           "Amenity", "Place", "Review"]
         filename = FileStorage.__file_path
         if isfile(filename):
             with open(filename, "r") as f:
@@ -67,5 +77,5 @@ class FileStorage:
                 final_dict = loads(json_string)
             for key, value in final_dict.items():
                 class_name, obj_id = key.split(".")
-                if class_name == "BaseModel":
-                    self.new(BaseModel(**value))
+                if class_name in allowed_classes:
+                    eval("self.new({}(**value))".format(class_name))
