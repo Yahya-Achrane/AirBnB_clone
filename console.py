@@ -81,7 +81,8 @@ class HBNBCommand(cmd.Cmd):
         """
         show docs goes here
         """
-        allowed_classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+        allowed_classes = ["BaseModel", "User", "State",
+                           "City", "Amenity", "Place", "Review"]
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
@@ -89,7 +90,8 @@ class HBNBCommand(cmd.Cmd):
                 if class_name in allowed_classes:
                     if len(args_array) > 1:
                         objs_dict = models.storage.all()
-                        search_string = "{}.{}".format(class_name, args_array[1])
+                        search_string = "{}.{}".format(class_name,
+                                                       args_array[1])
                         if search_string in objs_dict:
                             print(objs_dict[search_string])
                         else:
@@ -105,7 +107,8 @@ class HBNBCommand(cmd.Cmd):
         """
         Destroy docs goes here
         """
-        allowed_classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+        allowed_classes = ["BaseModel", "User", "State",
+                           "City", "Amenity", "Place", "Review"]
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
@@ -113,7 +116,8 @@ class HBNBCommand(cmd.Cmd):
                 if class_name in allowed_classes:
                     if len(args_array) > 1:
                         objs_dict = models.storage.all()
-                        search_string = "{}.{}".format(class_name, args_array[1])
+                        search_string = "{}.{}".format(class_name,
+                                                       args_array[1])
                         if search_string in objs_dict:
                             del(objs_dict[search_string])
                             models.storage.save()
@@ -130,7 +134,8 @@ class HBNBCommand(cmd.Cmd):
         """
         empty for now
         """
-        allowed_classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+        allowed_classes = ["BaseModel", "User", "State",
+                           "City", "Amenity", "Place", "Review"]
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
@@ -153,7 +158,8 @@ class HBNBCommand(cmd.Cmd):
         """
         update docs ..
         """
-        allowed_classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+        allowed_classes = ["BaseModel", "User", "State",
+                           "City", "Amenity", "Place", "Review"]
         if len(arg) > 0:
             args_array = arg.split()
             if len(args_array) > 0:
@@ -161,12 +167,18 @@ class HBNBCommand(cmd.Cmd):
                 if class_name in allowed_classes:
                     if len(args_array) > 1:
                         objs_dict = models.storage.all()
-                        search_string = "{}.{}".format(class_name, args_array[1])
+                        search_string = "{}.{}".format(class_name,
+                                                       args_array[1])
                         if search_string in objs_dict:
                             if len(args_array) > 2:
                                 if len(args_array) > 3:
-                                    if (args_array[3] not in ["created_at", "updated_at", "id"]):
-                                        setattr(objs_dict[search_string], str(args_array[2]), str(args_array[3]))
+                                    if (args_array[3]not in [
+                                        "created_at",
+                                            "updated_at", "id"]):
+                                        setattr(objs_dict
+                                                [search_string],
+                                                str(args_array[2]),
+                                                str(args_array[3]))
                                 else:
                                     print("** value missing **")
                             else:
@@ -180,7 +192,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
 
-     def do_User(self, arg):
+    def do_User(self, arg):
         """
         Docs
         """
@@ -244,6 +256,33 @@ class HBNBCommand(cmd.Cmd):
                 if command_method in allowed_methods:
                     if command_method == ".all()":
                         self.do_all("Amenity")
+
+    def do_Place(self, arg):
+        """
+        Docs
+        """
+        allowed_methods = [".all()"]
+        if len(arg) > 0:
+            args_array = arg.split()
+            if len(args_array) > 0:
+                command_method = args_array[0]
+                if command_method in allowed_methods:
+                    if command_method == ".all()":
+                        self.do_all("Place")
+
+    def do_Review(self, arg):
+        """
+        Docs
+        """
+        allowed_methods = [".all()"]
+        if len(arg) > 0:
+            args_array = arg.split()
+            if len(args_array) > 0:
+                command_method = args_array[0]
+                if command_method in allowed_methods:
+                    if command_method == ".all()":
+                        self.do_all("Review")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
