@@ -36,7 +36,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """
-        empty
+        Do nothing upon receiving an empty line.
         """
         pass
 
