@@ -16,30 +16,34 @@ from models.review import Review
 class HBNBCommand(cmd.Cmd):
     """
     HBNBCommand class
+    Defines the AirBnB command interpreter.
+    Attributes:
+    prompt (str): The command prompt.
     """
     prompt = "(hbnb) "
 
     def do_quit(self, args):
         """
-        quit
+        Quit command to exit the program.
         """
         return True
 
     def do_EOF(self, args):
         """
-        eof
+        EOF signal to exit the program.
         """
         return True
 
     def emptyline(self):
         """
-        empty
+        Do nothing upon receiving an empty line.
         """
         pass
 
     def do_create(self, arg):
         """
-        Docs
+        Usage: create <class>
+        Create a new class instance and print its id.
         """
         if len(arg) > 0:
             args_array = arg.split()
@@ -79,7 +83,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """
-        show docs goes here
+        Usage: show <class> <id> or <class>.show(<id>)
+        Display the string representation of a class instance of a given id.
         """
         allowed_classes = ["BaseModel", "User", "State",
                            "City", "Amenity", "Place", "Review"]
@@ -105,7 +110,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, arg):
         """
-        Destroy docs goes here
+        Usage: destroy <class> <id> or <class>.destroy(<id>)
+        Delete a class instance of a given id.
         """
         allowed_classes = ["BaseModel", "User", "State",
                            "City", "Amenity", "Place", "Review"]
@@ -132,7 +138,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """
-        empty for now
+        Usage: all or all <class> or <class>.all()
+        Display string representations of all instances of a given class.
+        If no class is specified, displays all instantiated objects.
         """
         allowed_classes = ["BaseModel", "User", "State",
                            "City", "Amenity", "Place", "Review"]
@@ -156,7 +164,11 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """
-        update docs ..
+        Usage: update <class> <id> <attribute_name> <attribute_value> or
+       <class>.update(<id>, <attribute_name>, <attribute_value>) or
+       <class>.update(<id>, <dictionary>)
+        Update a class instance of a given id by adding or updating
+        a given attribute key/value pair or dictionary.
         """
         allowed_classes = ["BaseModel", "User", "State",
                            "City", "Amenity", "Place", "Review"]
