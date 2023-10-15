@@ -138,7 +138,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """
-        empty for now
+        Usage: all or all <class> or <class>.all()
+        Display string representations of all instances of a given class.
+        If no class is specified, displays all instantiated objects.
         """
         allowed_classes = ["BaseModel", "User", "State",
                            "City", "Amenity", "Place", "Review"]
