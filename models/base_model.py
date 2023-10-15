@@ -20,7 +20,8 @@ class BaseModel:
     Methods:
         __init__: Initializes a new instance of BaseModel.
         __str__: Returns a string representation of the instance.
-        save: Updates the instance's `updated_at` attribute and saves the changes.
+        save: Updates the instance's `updated_at` attribute
+        and saves the changes.
         to_dict: Returns a dictionary representation of the instance.
     """
     def __init__(self, *args, **kwargs):
