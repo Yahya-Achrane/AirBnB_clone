@@ -42,7 +42,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """
-        Docs
+        Usage: create <class>
+        Create a new class instance and print its id.
         """
         if len(arg) > 0:
             args_array = arg.split()
