@@ -12,13 +12,16 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 class FileStorage:
     '''
-    The FileStorage class handles serialization and deserialization of instances to and from JSON files.
+    The FileStorage class handles serialization and deserialization of
+    instances to and from JSON files.
 
     Attributes:
         __file_path (str): The file path to the JSON file.
-        __objects (dict): A dictionary containing instances in the format {class_name.id: instance}.
+        __objects (dict): A dictionary containing instances in
+        the format {class_name.id: instance}.
 
     Methods:
         all: Returns the dictionary of all objects.
@@ -32,7 +35,7 @@ class FileStorage:
     def all(self):
         '''
         Returns a dictionary of all objects.
-        
+
         Returns:
             dict: A dictionary containing all objects.
         '''
@@ -65,7 +68,8 @@ class FileStorage:
         '''
         Deserializes JSON file and loads objects into dictionary.
         '''
-        allowed_classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+        allowed_classes = ["BaseModel", "User", "State", "City",
+                           "Amenity", "Place", "Review"]
         filename = FileStorage.__file_path
         if isfile(filename):
             with open(filename, "r") as f:
