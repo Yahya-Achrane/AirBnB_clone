@@ -16,6 +16,9 @@ from models.review import Review
 class HBNBCommand(cmd.Cmd):
     """
     HBNBCommand class
+    Defines the AirBnB command interpreter.
+    Attributes:
+    prompt (str): The command prompt.
     """
     prompt = "(hbnb) "
 
