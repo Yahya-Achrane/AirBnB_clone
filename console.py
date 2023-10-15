@@ -83,7 +83,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """
-        show docs goes here
+        Usage: show <class> <id> or <class>.show(<id>)
+        Display the string representation of a class instance of a given id.
         """
         allowed_classes = ["BaseModel", "User", "State",
                            "City", "Amenity", "Place", "Review"]
