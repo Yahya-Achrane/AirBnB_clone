@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-Module
+Defines unittests for models/place.py.
 '''
 import unittest
 from models.place import Place
