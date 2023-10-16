@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-Module
+Defines unittests for models/review.py.
 '''
 import unittest
 from models.review import Review
