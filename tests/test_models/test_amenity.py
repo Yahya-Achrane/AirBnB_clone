@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-Module
+Defines unittests for models/amenity.py.
 '''
 import unittest
 from models.amenity import Amenity
@@ -8,7 +8,7 @@ from models.amenity import Amenity
 
 class TestAmenity(unittest.TestCase):
     '''
-    Defines unittests for models/amenity.py.
+    Docs
     '''
 
     def test_moduleDocs(self):
