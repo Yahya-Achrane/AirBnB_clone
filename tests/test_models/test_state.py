@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-Module
+Defines unittests for models/state.py.
 '''
 import unittest
 from models.state import State
