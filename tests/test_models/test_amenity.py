@@ -8,7 +8,7 @@ from models.amenity import Amenity
 
 class TestAmenity(unittest.TestCase):
     '''
-    Docs
+    Defines unittests for models/amenity.py.
     '''
 
     def test_moduleDocs(self):
