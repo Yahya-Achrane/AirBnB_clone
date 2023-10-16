@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-Module
+Defines unittests for models/city.py.
 '''
 import unittest
 from models.city import City
