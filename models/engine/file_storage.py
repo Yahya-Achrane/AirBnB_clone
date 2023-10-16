@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-Module Docs
+Defines the FileStorage class.
 '''
 from json import dumps, loads
 from os.path import isfile
