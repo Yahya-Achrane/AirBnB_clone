@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Empty for now
+Defines the BaseModel class.
 
 """
 from datetime import datetime
